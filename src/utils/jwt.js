@@ -16,7 +16,7 @@ const tokenGeneration = (payload) => {
     }
 };
 
-const tokenError = (token) => {
+const tokenE = (token) => {
     if (!token) {
         throw new Error('Undefined Token');
     }
@@ -31,5 +31,5 @@ const tokenError = (token) => {
 
 module.exports = {
     tokenGeneration,
-    tokenError,
+    tokenE,
 };
