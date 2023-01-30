@@ -1,8 +1,15 @@
 const { User } = require('../models');
 
-const useCreate = async (displayName, email, password, image) => {
-  const user = User.create({ displayName, email, password, image });
-  return user;
-};
-
-module.exports = { useCreate };
+const postUser = async (displayName, email, password, image) => {
+  const user = await User.findOne({
+      where: { email } });
+      if (user) return { type: 400, message: 'User already registered' };
+      if (image) {
+        await User.create({ displayName, email, password, image });
+        return { type: null };
+      }
+      await User.create({ displayName, email, password });
+      return { type: null };
+    };
+    
+    module.exports = { postUser };

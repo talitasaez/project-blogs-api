@@ -1,23 +1,21 @@
-const { tokenGeneration } = require('../utils/jwt');
-const userValidate = require('../middlewares/userValidate');
-const getUserEmail = require('../middlewares/getUserEmail');
+const jwt = require('jsonwebtoken');
 const userService = require('../services/userService');
 
+const { JWT_SECRET } = process.env;
+
 const postUser = async (req, res) => {
-    const { displayName, email, password, image } = req.body;
-    const { error } = userValidate({ displayName, email, password, image });
-    if (error) return res.status(400).json({ message: error.mesage });
+    const { displayName, email, image } = req.body;
+    const { type, message } = await userService.postUser(displayName, email, image);
 
-    const userRegistered = await getUserEmail(email);
-    if (userRegistered) return res.status(409).json({ message: 'User already registered' });
-
-    const user = await userService.useCreate(displayName, email, password, image);
-
+    if (type) return res.status(409).json({ message });
+ 
     const payload = {
-        user: user.displayName,
+        displayName, 
+        email, 
+        image,
     };
 
-    const token = tokenGeneration(payload);
+    const token = jwt.sign(payload, JWT_SECRET);
     return res.status(201).json({ token });
 };
 
