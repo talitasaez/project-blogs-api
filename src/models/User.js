@@ -1,10 +1,11 @@
+
 const User = (sequelize, DataTypes) => {
    const tableUser  =  sequelize.define('User', {
     id: {
-      type:  DataTypes.INTEGER,
+      type:  DataTypes.INTERGER,
       primaryKey: true, 
       autoIncrement:true,
-    },
+    }, 
     displayName: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
