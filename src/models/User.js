@@ -2,7 +2,7 @@
 const User = (sequelize, DataTypes) => {
    const tableUser  =  sequelize.define('User', {
     id: {
-      type:  DataTypes.INTERGER,
+      type:  DataTypes.INTEGER,
       primaryKey: true, 
       autoIncrement:true,
     }, 
@@ -13,7 +13,7 @@ const User = (sequelize, DataTypes) => {
    },
    
    {
-    tableName: 'Users',
+    tableName: 'users',
     underscored: true,
     timestamps: false, 
    }
