@@ -18,8 +18,13 @@ const postUser = async (req, res) => {
     const token = jwt.sign(payload, JWT_SECRET);
     return res.status(201).json({ token });
 };
+   const getAllUser = async (_req, res) => {
+     const user = await userService.getAllUser();
+     return res.status(200).json(user);
+   };
 
   module.exports = {
     postUser,
+    getAllUser,
 
   };
