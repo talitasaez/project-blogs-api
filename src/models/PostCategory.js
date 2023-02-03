@@ -4,12 +4,12 @@ const post_category = (sequelize, DataTypes) => {
      postId: {
        type:  DataTypes.INTEGER,
        primaryKey: true, 
-       foreingkey: true,
+       foreingKey: true,
      }, 
      categoryId: {
         type:  DataTypes.INTEGER,
         primaryKey: true, 
-        foreingkey: true,
+        foreingKey: true,
       }, 
     },
     {
@@ -22,14 +22,14 @@ const post_category = (sequelize, DataTypes) => {
         models.BlogPost.belongsToMany(models.Category, {
             as: 'categories',
             through: PostCategory,
-            foreingkey: 'postId',
-            otherkey: 'categoryId',
+            foreingKey: 'postId',
+            otherKey: 'categoryId',
         });
         models.Category.belongsToMany(models.BlogPost, {
             as: 'blog_posts',
             through: PostCategory,
-            foreingkey: 'categoryId',
-            otherkey: 'postId',
+            foreingKey: 'categoryId',
+            otherKey: 'postId',
         });
     }
   return PostCategory;
