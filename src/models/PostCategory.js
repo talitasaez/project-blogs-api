@@ -32,5 +32,5 @@ const post_category = (sequelize,DataTypes) => {
   }
   return PostCategory;
  };
- 
+ //
  module.exports = post_category;
